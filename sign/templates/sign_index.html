@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="sgin_idnex">
+<head>
+    {% load bootstrap3 %}
+    {% bootstrap_javascript %}
+    {% bootstrap_css %}
+    <meta charset="UTF-8">
+    <title>签到会</title>
+</head>
+<body>
+<!-- 导航栏 -->
+<nav class="navbar navbar-inverse navbar-fixed-top">
+    <dir class="container">
+        <dir class="navbar-header">
+            <a class="navbar-brand" href="#">{{ event.name }}</a>
+        </dir>
+        <dir id="navbar" class="collapse navbar-collapse">
+            <ul class="nav navbar-nav">
+                <li><a href="/event_manage/">发布会</a></li>
+                <li><a href="/guest_manage/">嘉宾表</a></li>
+            </ul>
+        </dir>
+    </dir>
+</nav>
+
+<!-- 签到功能 -->
+<nav class="page-header" style="padding-top: 80px;">
+    <dir id="navbar" class="navbar-collapse collapse">
+        <form class="navbar-form" method="POST" action="/sign_index_action/{{ event.id }}/">
+            <dir class="form-group">
+                <input name="phone" type="text" placeholder="手机号码" class="form-control">
+            </dir>
+            <button type="submit" class="btn btn-success">签到</button>
+            <font color="red">
+            <br>{{ hint }}
+            <br>{{ guest.realname }}
+            <br>{{ guest.phone }}
+            </font>
+            {% csrf_token %}
+        </form>
+    </dir>
+</nav>
+<!-- 已签到表 -->
+<div class="row" style="padding-top:20px;">
+    <div class="col-md-6">
+        <table class="table table-striped">
+            <thead align="center">
+              <tr>
+              <th>已签到</th><th>嘉宾</th>
+              </tr>
+            </thead>
+            <tabody>
+                <tr>
+                    <td>{{ guests }}</td>
+                    <td>{{ guests1 }}</td>
+                </tr>
+            </tabody>
+        </table>
+    </div>
+</div>
+</body>
+</html>
